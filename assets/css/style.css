@@ -2,11 +2,29 @@ body{
     background-image: url("../images/background.png");
 }
 
-#character-select, #main-select{
+#character1-select, #character2-select,
+#character3-select, #character4-select{
     background-color: rgba(255,255,255,0.5);
     border: 2px solid maroon;
     text-align: center;
     margin: 1%;
     padding: 0;
     
+}
+
+#main-select{
+    background-color: rgba(255,255,255,0.5);
+    border: 2px solid maroon;
+    text-align: center;
+    margin: 1%;
+    padding: 0;
+    
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.show{
+    visibility: visible;
 }
