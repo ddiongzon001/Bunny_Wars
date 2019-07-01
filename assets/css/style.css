@@ -21,6 +21,15 @@ body{
     
 }
 
+#enemy1-select, #enemy2-select,
+#enemy3-select, #enemy4-select{
+    background-color: rgba(255,255,255,0.5);
+    border: 2px solid maroon;
+    text-align: center;
+    margin: 1%;
+    padding: 0;
+}
+
 .hidden{
     visibility: hidden;
 }
