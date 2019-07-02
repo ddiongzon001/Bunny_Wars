@@ -12,10 +12,13 @@ var mainDef = "";
 var mainHP = 0;
 var defHP = 0;
 
-var mainAttackPwr = "";
-var defAttackPwr = "";
+var mainAttackPwr = 0;
+var defAttackPwr = 0;
 
 var defeatedCount = 0;
+
+var count=0;
+var maincount =0;
 
 //HTML Display variables
 var startDisplay = $('#startText');
@@ -72,6 +75,12 @@ var attacktext2Display = $('#enemyAttackText');
 //Restart Function
 function restart() {
     characters.hp = [120, 115, 110, 105];
+    mainAttackPwr = 0;
+    defAttackPwr = 0;
+    mainHP = 0;
+    defHP = 0;
+    mainChar = "";
+    mainDef = "";
 
     startDisplay.attr("class", "col-md-2 show");
     char1boxDisplay.attr("class", "col-md-2 show");
@@ -136,6 +145,8 @@ function restart() {
 //Main Character Selection
 function pickHero() {
 
+    startDisplay.attr("class", "hidden");
+
     //If user picks first character
     char1boxDisplay.on("click", function () {
         char1boxDisplay.attr("class", "hidden");
@@ -171,6 +182,9 @@ function pickHero() {
         enemy4NameDisplay.attr("class", "show");
         enemy4PicDisplay.attr("class", "show");
         enemy4HPDisplay.attr("class", "show");
+
+        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
+        mainHP = characters.hp[characters.name.indexOf(mainChar)];
     });
 
 
@@ -209,6 +223,9 @@ function pickHero() {
         enemy4NameDisplay.attr("class", "show");
         enemy4PicDisplay.attr("class", "show");
         enemy4HPDisplay.attr("class", "show");
+
+        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
+        mainHP = characters.hp[characters.name.indexOf(mainChar)];
     });
 
     // If user picks third character
@@ -246,6 +263,9 @@ function pickHero() {
         enemy4NameDisplay.attr("class", "show");
         enemy4PicDisplay.attr("class", "show");
         enemy4HPDisplay.attr("class", "show");
+
+        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
+        mainHP = characters.hp[characters.name.indexOf(mainChar)];
     });
 
     //If user picks fourth character
@@ -283,6 +303,9 @@ function pickHero() {
         enemy3NameDisplay.attr("class", "show");
         enemy3PicDisplay.attr("class", "show");
         enemy3HPDisplay.attr("class", "show");
+
+        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
+        mainHP = characters.hp[characters.name.indexOf(mainChar)];
     });
 
 }
@@ -307,10 +330,12 @@ function pickDefender() {
         defenderHPDisplay.attr("class", "show");
 
         mainDef = characters.name[0];
-        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
-        defAttackPwr = characters.attackPower[characters.name.indexOf(mainDef)];
-        mainHP = characters.hp[characters.name.indexOf(mainChar)];
-        defHP = characters.hp[characters.name.indexOf(mainDef)];
+        defAttackPwr = characters.attackPower[0];
+        defHP = characters.hp[0];
+
+        console.log(defHP)
+        console.log(defAttackPwr);
+        return;
 
     });
 
@@ -331,10 +356,12 @@ function pickDefender() {
         defenderHPDisplay.attr("class", "show");
 
         mainDef = characters.name[1];
-        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
-        defAttackPwr = characters.attackPower[characters.name.indexOf(mainDef)];
-        mainHP = characters.hp[characters.name.indexOf(mainChar)];
-        defHP = characters.hp[characters.name.indexOf(mainDef)];
+        defAttackPwr = characters.attackPower[1];
+        defHP = characters.hp[1];
+
+        console.log(defHP)
+        console.log(defAttackPwr);
+        return;
 
     });
 
@@ -355,10 +382,12 @@ function pickDefender() {
         defenderHPDisplay.attr("class", "show");
 
         mainDef = characters.name[2];
-        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
-        defAttackPwr = characters.attackPower[characters.name.indexOf(mainDef)];
-        mainHP = characters.hp[characters.name.indexOf(mainChar)];
-        defHP = characters.hp[characters.name.indexOf(mainDef)];
+        defAttackPwr = characters.attackPower[2];
+        defHP = characters.hp[2];
+
+        console.log(defHP)
+        console.log(defAttackPwr);
+        return;
 
     });
 
@@ -379,10 +408,12 @@ function pickDefender() {
         defenderHPDisplay.attr("class", "show");
 
         mainDef = characters.name[3];
-        mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
-        defAttackPwr = characters.attackPower[characters.name.indexOf(mainDef)];
-        mainHP = characters.hp[characters.name.indexOf(mainChar)];
-        defHP = characters.hp[characters.name.indexOf(mainDef)];
+        defAttackPwr = characters.attackPower[3];
+        defHP = characters.hp[3];
+
+        console.log(defHP)
+        console.log(defAttackPwr);
+        return;
 
     });
 
@@ -393,69 +424,70 @@ function pickDefender() {
 //Uses the button to attack the defender
 function attack() {
     $('#attack').on("click", function () {
+        if (mainDef === "" || mainChar === "") {
+            attacktextDisplay.text("Please choose both your character and a defender.");
+            attacktext2Display.text("");
+        } else {
+            //decreases HPs
+            mainHP = mainHP - defAttackPwr;
+            defHP = defHP - mainAttackPwr;
 
-
-        //increases the main's attack power
-        mainAttackPwr = mainAttackPwr * 2;
-        console.log(mainAttackPwr);
-
-        //decreases HPs
-        mainHP = mainHP - defAttackPwr;
-        defHP = defHP - mainAttackPwr;
-
-        mainHPDisplay.text(mainHP);
-        defenderHPDisplay.text(defHP);
-
-        // shows the damage
-        $('#mainAttackText').text("You attacked " + mainDef + " for " + mainAttackPwr + " damage.");
-        $('#enemyAttackText').text(mainDef + " attacked you back for " + defAttackPwr + " damage.");
-
-        if (mainHP <= 0) {
-
-            //shows the HP
-            mainHPDisplay.text("0");
+            mainHPDisplay.text(mainHP);
             defenderHPDisplay.text(defHP);
 
-            //shows the damage
-            attacktextDisplay.text("Your life points went to zero! You lost!");
-            attacktext2Display.html("<button type='button' class='btn btn-danger' id='again'>Play Again?</button>");
-            $('#again').on("click", function () {
-                mainGame();
-            })
-        } else if (defHP <= 0) {
+            // shows the damage
+            $('#mainAttackText').text("You attacked " + mainDef + " for " + mainAttackPwr + " damage.");
+            $('#enemyAttackText').text(mainDef + " attacked you back for " + defAttackPwr + " damage.");
 
-            if (defeatedCount === 3) {
+            //increases the main's attack power
+            mainAttackPwr = mainAttackPwr * 2;
+            console.log(mainAttackPwr);
+
+            if (mainHP <= 0) {
+
                 //shows the HP
-                mainHPDisplay.text(mainHP);
-                defenderHPDisplay.text(0);
-
-                defenderboxDisplay.attr("class", "hidden");
+                mainHPDisplay.text("0");
+                defenderHPDisplay.text(defHP);
 
                 //shows the damage
-                attacktextDisplay.text("You have defeated all the enemies!");
-                attacktext2Display.html("<button type='button' class='btn btn-danger' id='again'>Play Again?</button>");
+                attacktextDisplay.text("Your life points went to zero! You lost!");
+                attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again0?</button>");
                 $('#again').on("click", function () {
                     mainGame();
                 })
+            } else if (defHP <= 0) {
 
-            } 
-            else {
-                //shows the HP
-                mainHPDisplay.text(mainHP);
-                defenderHPDisplay.text(0);
-                
-                defenderboxDisplay.attr("class", "hidden");
+                if (defeatedCount === 3) {
+                    //shows the HP
+                    mainHPDisplay.text(mainHP);
+                    defenderHPDisplay.text(0);
 
-                //shows the damage
-                attacktextDisplay.text("You have defeated " + mainDef + "! You can chose to fight somebunny else.");
-                attacktext2Display.text("");
+                    defenderboxDisplay.attr("class", "hidden");
 
-                defeatedCount++;
+                    //shows the damage
+                    attacktextDisplay.text("You have defeated all the enemies!");
+                    attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again1?</button>");
+                    $('#again').on("click", function () {
+                        mainGame();
+                    })
 
-                contin();
+                } else {
+                    //shows the HP
+                    mainHPDisplay.text(mainHP);
+                    defenderHPDisplay.text(0);
+
+                    defenderboxDisplay.attr("class", "hidden");
+
+                    //shows the damage
+                    attacktextDisplay.text("You have defeated " + mainDef + "! You can chose to fight somebunny else.");
+                    attacktext2Display.text("");
+
+                    defeatedCount++;
+                    
+                    contin();
+                }
             }
         }
-
         attacktextDisplay.attr("class", "show");
         attacktext2Display.attr("class", "show");
 
@@ -464,21 +496,28 @@ function attack() {
 }
 
 function mainGame() {
+    maincount++;
+    console.log("You ran mainGame: " + count)
     restart();
     pickHero();
     pickDefender();
     attack();
+
 }
 
 function contin() {
+    count++;
+    console.log("You ran contin pickD")
     pickDefender();
     attack();
+
 }
 
 //MAIN SECTION OF GAME
 $(document).ready(function () {
     restart();
     pickHero();
+    console.log("You ran document pickD")
     pickDefender();
     attack();
 });
