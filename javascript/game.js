@@ -316,6 +316,11 @@ function pickDefender() {
     //If user picks first enemy
     enemy1boxDisplay.on("click", function () {
 
+        if(mainDef != ""){
+            attacktextDisplay.text("Please defeat the defender you have already selected");
+            attacktext2Display.text("")
+        }
+        else{    
         enemy1boxDisplay.attr("class", "hidden");
 
         //main defender shows up
@@ -336,11 +341,17 @@ function pickDefender() {
         console.log(defHP)
         console.log(defAttackPwr);
         return;
+        }
 
     });
 
     //If user picks second enemy
     enemy2boxDisplay.on("click", function () {
+        if(mainDef != ""){
+            attacktextDisplay.text("Please defeat the defender you have already selected");
+            attacktext2Display.text("")
+        }
+        else{ 
 
         enemy2boxDisplay.attr("class", "hidden");
 
@@ -362,6 +373,7 @@ function pickDefender() {
         console.log(defHP)
         console.log(defAttackPwr);
         return;
+        }
 
     });
 
@@ -442,8 +454,7 @@ function attack() {
             //increases the main's attack power
             mainAttackPwr = mainAttackPwr * 2;
             console.log(mainAttackPwr);
-
-            if (mainHP <= 0) {
+             if (mainHP <= 0) {
 
                 //shows the HP
                 mainHPDisplay.text("0");
@@ -453,7 +464,7 @@ function attack() {
                 attacktextDisplay.text("Your life points went to zero! You lost!");
                 attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again0?</button>");
                 $('#again').on("click", function () {
-                    mainGame();
+                    restart();
                 })
             } else if (defHP <= 0) {
 
@@ -468,7 +479,7 @@ function attack() {
                     attacktextDisplay.text("You have defeated all the enemies!");
                     attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again1?</button>");
                     $('#again').on("click", function () {
-                        mainGame();
+                        restart();
                     })
 
                 } else {
@@ -483,8 +494,9 @@ function attack() {
                     attacktext2Display.text("");
 
                     defeatedCount++;
+
+                    mainDef = "";
                     
-                    contin();
                 }
             }
         }
@@ -495,23 +507,6 @@ function attack() {
 
 }
 
-function mainGame() {
-    maincount++;
-    console.log("You ran mainGame: " + count)
-    restart();
-    pickHero();
-    pickDefender();
-    attack();
-
-}
-
-function contin() {
-    count++;
-    console.log("You ran contin pickD")
-    pickDefender();
-    attack();
-
-}
 
 //MAIN SECTION OF GAME
 $(document).ready(function () {
