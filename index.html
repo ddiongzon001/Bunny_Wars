@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bunny Wars | Don't Become a Dust Bunny!</title>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Bootstrap CSS Link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -80,20 +82,39 @@
                 <img id="enemy3-picture">
                 <p id="enemy3-HP"></p>
             </div>
+            <div class="col-md-2" id="enemy4-select">
+                <p id="enemy4-name"></p>
+                <img id="enemy4-picture">
+                <p id="enemy4-HP"></p>
+            </div>
         </div>
 
         <!-- Fight Section -->
         <h3>Fight Section</h3>
-        <button type="button" class="btn btn-danger">Attack!</button>
+        <button type="button" class="btn btn-danger" id="attack">Attack!</button>
 
         <!-- User's choice in defender -->
         <h3>Defender</h3>
-        <p id="main-defender"></p>
+        <div class="row">
+            <div class="col-md-2" id="defender-select">
+                <p id="defender-name"></p>
+                <img id="defender-picture">
+                <p id="defender-HP"></p>
+            </div>
+        </div>
 
+        <!-- Text of attacking -->
+        <div class="row">
+            <div class="col-md-2">
+                <p id="mainAttackText"></p>
+                <p id="enemyAttackText"></p>
+            </div>
+        </div>
 
     </div>
+
     <!-- JQuery Link -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
 
     <!-- JS Link -->
     <script src="javascript/game.js"></script>

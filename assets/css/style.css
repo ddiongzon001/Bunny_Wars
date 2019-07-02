@@ -5,7 +5,7 @@ body{
 #character1-select, #character2-select,
 #character3-select, #character4-select{
     background-color: rgba(255,255,255,0.5);
-    border: 2px solid maroon;
+    border: 2px solid #4F4E4A;
     text-align: center;
     margin: 1%;
     padding: 0;
@@ -14,7 +14,7 @@ body{
 
 #main-select{
     background-color: rgba(255,255,255,0.5);
-    border: 2px solid maroon;
+    border: 2px solid green;
     text-align: center;
     margin: 1%;
     padding: 0;
@@ -24,6 +24,14 @@ body{
 #enemy1-select, #enemy2-select,
 #enemy3-select, #enemy4-select{
     background-color: rgba(255,255,255,0.5);
+    border: 2px solid #4F4E4A;
+    text-align: center;
+    margin: 1%;
+    padding: 0;
+}
+
+#defender-select{
+    background-color: rgba(255,255,255,0.5);
     border: 2px solid maroon;
     text-align: center;
     margin: 1%;
@@ -31,7 +39,7 @@ body{
 }
 
 .hidden{
-    visibility: hidden;
+    display: none;
 }
 
 .show{
