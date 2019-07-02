@@ -462,22 +462,22 @@ function attack() {
 
                 //shows the damage
                 attacktextDisplay.text("Your life points went to zero! You lost!");
-                attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again0?</button>");
+                attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again?</button>");
                 $('#again').on("click", function () {
                     restart();
                 })
             } else if (defHP <= 0) {
-
-                if (defeatedCount === 3) {
+                defeatedCount++;
+                if (defeatedCount >= 3) {
                     //shows the HP
                     mainHPDisplay.text(mainHP);
                     defenderHPDisplay.text(0);
 
                     defenderboxDisplay.attr("class", "hidden");
-
+                    defAttackPwr = 0;
                     //shows the damage
                     attacktextDisplay.text("You have defeated all the enemies!");
-                    attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again1?</button>");
+                    attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again?</button>");
                     $('#again').on("click", function () {
                         restart();
                     })
@@ -493,7 +493,7 @@ function attack() {
                     attacktextDisplay.text("You have defeated " + mainDef + "! You can chose to fight somebunny else.");
                     attacktext2Display.text("");
 
-                    defeatedCount++;
+                    
 
                     mainDef = "";
                     
