@@ -11,6 +11,7 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS Link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -24,11 +25,15 @@
 <body>
 
     <!-- Title -->
-    <h1>Bunny Wars RPG!</h1>
-    <p id="startText"></p>
+
 
     <!-- Character Selections -->
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Bunny Wars RPG!</h1>
+            </div>
+        </div>
         <div class="row">
 
             <div class="col-md-3" id="character1-select">
@@ -72,16 +77,21 @@
                 <p id="defender-HP"></p>
             </div>
         </div>
+
         <!-- Fight Section -->
-        <h3>Fight Section</h3>
-        <button type="button" class="btn btn-danger" id="attack">Attack!</button>
+        <div class="row>">
+            <h3>Fight Section</h3>
+        </div>
 
         <!-- Text of attacking -->
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <p id="mainAttackText"></p>
                 <p id="enemyAttackText"></p>
             </div>
+            <div class="col-md-6">
+                    <button type="button" class="btn btn-danger" id="attack">Attack!</button>
+                </div>
         </div>
 
         <!-- Enemies Available to Attack -->

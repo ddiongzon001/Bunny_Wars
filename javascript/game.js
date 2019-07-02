@@ -21,7 +21,6 @@ var count=0;
 var maincount =0;
 
 //HTML Display variables
-var startDisplay = $('#startText');
 var char1boxDisplay = $('#character1-select');
 var char2boxDisplay = $('#character2-select');
 var char3boxDisplay = $('#character3-select');
@@ -82,13 +81,17 @@ function restart() {
     mainChar = "";
     mainDef = "";
 
-    startDisplay.attr("class", "col-md-2 show");
+    attacktextDisplay.text("Please choose somebunny to be your character!");
+    attacktext2Display.text("");
+    attacktextDisplay.attr("class", "show");
+    attacktext2Display.attr("class", "show");
+
+
     char1boxDisplay.attr("class", "col-md-2 show");
     char2boxDisplay.attr("class", "col-md-2 show");
     char3boxDisplay.attr("class", "col-md-2 show");
     char4boxDisplay.attr("class", "col-md-2 show");
 
-    startDisplay.text("Choose somebunny!");
     char1NameDisplay.text(characters.name[0]);
     char1PicDisplay.attr('src', characters.img[0]);
     char1PicDisplay.width('100px');
@@ -116,8 +119,6 @@ function restart() {
     enemy3boxDisplay.attr("class", "hidden");
     enemy4boxDisplay.attr("class", "hidden");
     defenderboxDisplay.attr("class", "hidden");
-    attacktextDisplay.attr("class", "hidden");
-    attacktext2Display.attr("class", "hidden");
 
     enemy1NameDisplay.text(characters.name[0]);
     enemy1PicDisplay.attr('src', characters.img[0]);
@@ -145,7 +146,6 @@ function restart() {
 //Main Character Selection
 function pickHero() {
 
-    startDisplay.attr("class", "hidden");
 
     //If user picks first character
     char1boxDisplay.on("click", function () {
@@ -185,6 +185,9 @@ function pickHero() {
 
         mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
         mainHP = characters.hp[characters.name.indexOf(mainChar)];
+
+        attacktextDisplay.text("Please choose somebunny to be the defender!");
+        attacktext2Display.text("");
     });
 
 
@@ -226,6 +229,9 @@ function pickHero() {
 
         mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
         mainHP = characters.hp[characters.name.indexOf(mainChar)];
+
+        attacktextDisplay.text("Please choose somebunny to be the defender!");
+        attacktext2Display.text("")
     });
 
     // If user picks third character
@@ -266,6 +272,9 @@ function pickHero() {
 
         mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
         mainHP = characters.hp[characters.name.indexOf(mainChar)];
+
+        attacktextDisplay.text("Please choose somebunny to be the defender!");
+        attacktext2Display.text("")
     });
 
     //If user picks fourth character
@@ -306,6 +315,9 @@ function pickHero() {
 
         mainAttackPwr = characters.attackPower[characters.name.indexOf(mainChar)];
         mainHP = characters.hp[characters.name.indexOf(mainChar)];
+
+        attacktextDisplay.text("Please choose somebunny to be the defender!");
+        attacktext2Display.text("")
     });
 
 }
@@ -340,6 +352,9 @@ function pickDefender() {
 
         console.log(defHP)
         console.log(defAttackPwr);
+
+        attacktextDisplay.text("ATTACK!!");
+        attacktext2Display.text("")
         return;
         }
 
@@ -372,6 +387,8 @@ function pickDefender() {
 
         console.log(defHP)
         console.log(defAttackPwr);
+        attacktextDisplay.text("ATTACK!!");
+        attacktext2Display.text("")
         return;
         }
 
@@ -379,6 +396,11 @@ function pickDefender() {
 
     //If user picks third enemy
     enemy3boxDisplay.on("click", function () {
+        if(mainDef != ""){
+            attacktextDisplay.text("Please defeat the defender you have already selected");
+            attacktext2Display.text("")
+        }
+        else{
 
         enemy3boxDisplay.attr("class", "hidden");
 
@@ -399,12 +421,20 @@ function pickDefender() {
 
         console.log(defHP)
         console.log(defAttackPwr);
+        attacktextDisplay.text("ATTACK!!");
+        attacktext2Display.text("")
         return;
+        }
 
     });
 
     //If user picks fourth enemy
     enemy4boxDisplay.on("click", function () {
+        if(mainDef != ""){
+            attacktextDisplay.text("Please defeat the defender you have already selected");
+            attacktext2Display.text("")
+        }
+        else{
 
         enemy4boxDisplay.attr("class", "hidden");
 
@@ -425,7 +455,10 @@ function pickDefender() {
 
         console.log(defHP)
         console.log(defAttackPwr);
+        attacktextDisplay.text("ATTACK!!");
+        attacktext2Display.text("")
         return;
+        }
 
     });
 
@@ -452,13 +485,17 @@ function attack() {
             $('#enemyAttackText').text(mainDef + " attacked you back for " + defAttackPwr + " damage.");
 
             //increases the main's attack power
-            mainAttackPwr = mainAttackPwr * 2;
+            mainAttackPwr = mainAttackPwr + characters.attackPower[characters.name.indexOf(mainChar)];
             console.log(mainAttackPwr);
              if (mainHP <= 0) {
+
+
+                mainboxDisplay.attr("class", "hidden");
 
                 //shows the HP
                 mainHPDisplay.text("0");
                 defenderHPDisplay.text(defHP);
+                mainAttackPwr=0;
 
                 //shows the damage
                 attacktextDisplay.text("Your life points went to zero! You lost!");
@@ -466,6 +503,21 @@ function attack() {
                 $('#again').on("click", function () {
                     restart();
                 })
+
+                
+                if(defHP<=0 ){
+                    defenderboxDisplay.attr("class", "hidden");
+                    defenderHPDisplay.text(0);
+                    defAttackPwr = 0;
+
+                    attacktextDisplay.text("It ended in a duel!");
+                    attacktext2Display.html("<button type='button' class='btn btn-dark' id='again'>Play Again?</button>");
+                    $('#again').on("click", function () {
+                        restart();
+                    })
+                    
+                }
+
             } else if (defHP <= 0) {
                 defeatedCount++;
                 if (defeatedCount >= 3) {

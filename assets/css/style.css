@@ -1,6 +1,7 @@
 body{
     background-image: url("../images/background.png");
     text-align: center;
+    background-size: auto;
 }
 
 div{
@@ -10,7 +11,7 @@ div{
 #character1-select, #character2-select,
 #character3-select, #character4-select{
     background-color: rgba(255,255,255,0.5);
-    border: 2px solid #4F4E4A;
+    border: 2px solid #444752;
     text-align: center;
     margin: 1%;
     padding: 0;
@@ -18,8 +19,8 @@ div{
 }
 
 #main-select{
-    background-color: rgba(255,255,255,0.5);
-    border: 2px solid green;
+    background-color: rgba(169,197,157,0.5);
+    border: 2px solid #78D662;
     text-align: center;
     margin: 1%;
     padding: 0;
@@ -28,16 +29,16 @@ div{
 
 #enemy1-select, #enemy2-select,
 #enemy3-select, #enemy4-select{
-    background-color: rgba(255,255,255,0.5);
-    border: 2px solid #4F4E4A;
+    background-color: rgba(197,204,217,0.5);
+    border: 2px solid #4D37B1;
     text-align: center;
     margin: 1%;
     padding: 0;
 }
 
 #defender-select{
-    background-color: rgba(255,255,255,0.5);
-    border: 2px solid maroon;
+    background-color: rgba(230,176,162,0.5);
+    border: 2px solid #B01812;
     text-align: center;
     margin: 1%;
     padding: 0;
@@ -53,6 +54,12 @@ div{
 
 h1, h3{
     font-family: 'Permanent Marker', cursive;
+    /* font-family: 'Press Start 2P', cursive; */
     color: #E3E3E3;
     text-shadow: -2px 0 1px #B01812, 0 2px 1px #B01812, 2px 0 1px #B01812, 0 -2px 1px #B01812;
+}
+
+p{
+    font-family: 'Exo 2', sans-serif;
+    color: #444752;
 }
