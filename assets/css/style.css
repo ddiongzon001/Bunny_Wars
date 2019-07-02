@@ -1,5 +1,10 @@
 body{
     background-image: url("../images/background.png");
+    text-align: center;
+}
+
+div{
+    text-align: center;
 }
 
 #character1-select, #character2-select,
@@ -44,4 +49,10 @@ body{
 
 .show{
     visibility: visible;
+}
+
+h1, h3{
+    font-family: 'Permanent Marker', cursive;
+    color: #B01812;
+    text-shadow: -2px 0 1px #4D37B1, 0 2px 1px #4D37B1, 2px 0 1px #4D37B1, 0 -2px 1px #4D37B1;
 }
